@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: rgb(255, 255, 255);
+        }
+        .cdk-drag-preview {
+            box-sizing: border-box;
+            border-radius: 4px;
+            box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+        }
+
+        .cdk-drag-placeholder {
+            opacity: 0;
+        }
+
+        .cdk-drag-animating {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        
+
+        .example-list.cdk-drop-list-dragging .projet:not(.cdk-drag-placeholder) {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+
+        .titre{
+            margin: auto;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .projetdetails{
+            display: flex;
+            
+            margin-top:80px;
+            margin-bottom: 60px;
+        }
+        .details{
+            border: 1px solid black;
+       
+            width: 500px;
+            min-height: 100px !important;
+        }
+        .taches{
+            border: 1px solid black;
+            width: 1000px;
+            min-height: 200px;
+        }
+        .tachedetails{
+            border: 1px solid black;
+            width: 500px;
+           
+        }
+
+        .projects{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            
+        }
+        .cdk-drop-list:nth-child(-n + 2) {
+            border-right: 1px solid rgb(219, 219, 219);
+        }
+        .cdk-drop-list{
+          
+            width:300px;
+           
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .projet{
+            width: 220px;
+            height: 100px;
+            border: 1px solid rgb(224, 224, 224);
+            margin: 10px;
+            background-color: white;
+        }
+        .projet >p:first-child{
+            font-size: 16px;
+            padding: 12px;
+            font-weight: 500;
+            text-overflow: ellipsis;
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .projet .description{
+            font-size: 14px;
+            padding: 12px;
+
+            text-overflow: ellipsis;
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .titles{
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+        }
+        .title{
+            width:300px;
+          
+            height: 50px;
+            text-align: center;
+        }
+        
+        /* ============== */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #fcfcfc;
+            overflow-x: hidden;
+            transition: 0.5s;
+            
+            padding-top: 60px;
+            box-shadow: rgba(0, 0, 0, 0.35) 5px 2px 5px;
+
+        }
+
+        .sidenavopened{
+            padding: 40px;
+            display: block;
+            width: 25%;
+        }
+
+        .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+        color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        }
+        form{
+            margin-top: 50px;
+        }
+        .sidenav h1{
+            margin-top: 40px;
+            font-size: 32px;
+        }
+        form button{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+        <h1>Ajouter une nouvelle tache</h1>
+        <form>
+            
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Intitule</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+         
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            <button type="submit" class="btn btn-primary"  value="Ajouter">Ajouter</button>
+          </form>
+      </div>
+
+    <i class="bi bi-arrow-left-circle" style="color: red;font-size: 38px;margin: 19px;" routerLink="/"></i>
+    <i class="bi bi-plus-circle" style="color: red;font-size: 38px;margin: 19px;" (click)="openNav()"></i>
+    <h1 class="titre" >Details</h1>
+    <div class="projetdetails" >
+        
+        <div class="details">
+           <p>Get to work</p>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto labore vel.</p>
+           <p>crée le 11/20/2024</p>
+        </div>
+        <div class="taches">
+            <div class="titles" >
+                <div class="title">
+                    <h2>To do</h2>
+                </div>
+                <div class="title">
+                    <h2>Doing</h2>
+                </div>
+                <div class="title">
+                    <h2>Done</h2>
+                </div>
+            </div>
+            <div class="projects" cdkDropListGroup>
+        
+                <div class="myDiv" cdkDropList
+                [cdkDropListData]="todo"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+               
+                    <div class="projet" *ngFor="let item of todo" cdkDrag routerLink="/project-details" >
+                        <p>{{item}} sdsdf sfsd sddssdsdsd sd dsds</p>
+                        <p class="description" >Loremtque, repellendus incidunt .</p>
+                    </div>
+                  
+                </div>
+                <div class="myDiv"  cdkDropList
+                [cdkDropListData]="doing"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="projet" *ngFor="let item of doing" cdkDrag routerLink="/project-details">
+                    <p>{{item}}</p>
+                    <p class="description"></p>
+                </div>
+                </div>
+                <div class="myDiv" cdkDropList
+                [cdkDropListData]="done"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="projet" *ngFor="let item of done" cdkDrag routerLink="/project-details">
+                    <p>{{item}}</p>
+                    <p class="description">laborum sain perspiciatis itaque tempore ab non quos?</p>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="tachedetails" > 
+            <p>Get to work</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa sunt quibusdam magnam, qui ex! Fuga quos, sequi autem ad minus in adipisci, suscipit, rerum aut officia illum placeat dicta!</p>
+        </div>
+
+    </div>
+</body>
+</html>
